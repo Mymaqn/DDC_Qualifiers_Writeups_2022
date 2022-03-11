@@ -6,6 +6,8 @@ Forslået sværhedsgrad: Meget let
 
 Haaukins API: Nej
 
+Beskrivelse:
+
 En af de ældste former for kryptering er cæsar-ciferen, hvor hvert bogstav roteres af en hemmelig nøgle. Kan du dekryptere flaget?
 
 Husk at lægge resultatet ind i flagformatet:
