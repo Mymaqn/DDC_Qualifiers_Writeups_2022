@@ -255,16 +255,16 @@ Dette var min metode at få foothold på. Jeg fandt det nemmere at uploade en ph
 
 Men for folk lidt nyere til cybersikkerhed, kan det godt virke overvældende at downloade, læse og forstå en exploit, for derefter at modificere den.
 
-Jeg har derfor lavet denne sektion, til at forklare en anden måde at få foothold på maskinen, som ikke kræver man modificerer den originale exploit.
+Jeg har derfor lavet denne sektion, til at forklare nogle andre måder at opgradere sin shell fra pseudo shell, som ikke kræver man modificerer den originale exploit.
 
-Istedet bruger man den originale exploits funktionalitet til at spawne en reverse shell. Dette kræver dog flere trin at reproducere. Jeg plejer personligt at undgå dette, da jeg gerne hurtigt vil kunne reproducere mine trin, i tilfælde af jeg mister forbindelse eller lignende til boksen. Men dette vil være nemmere for nyere mennesker i cybersikkerhed at forstå.
+Istedet bruger man den originale exploits funktionalitet til at spawne en reverse shell. Dette kræver dog flere trin at reproducere. Jeg plejer personligt at undgå dette, da jeg gerne hurtigt vil kunne reproducere mine trin, i tilfælde af jeg mister forbindelse eller lignende til boksen. Men dette vil være nemmere for nybegyndere at gå til.
 
 ### Step 1. Kør original exploit og enumerér.
 Efter du har kørt din originale exploit får du en pseudo shell, hvor du kan køre simple kommandoer i.
 
 Du kan bruge denne shell til at enumere hvilke programmer eksisterer på maskinen. Jeg plejer gerne at lede efter curl og wget, da jeg derved kan downloade en stage 2 payload og køre denne via. min pseudo shell.
 
-Derudover plejer jeg også at lede efter python, da python er nem at downloade en reverse shell payload til, som er relativ kort.
+Derudover plejer jeg også at lede efter python, da python er nem at downloade en reverse shell payload til, som er relativ kort, men også har simple one-liners der virker ret ofte.
 
 Du kan søge efter programmer på path vha. ```which programnavn``` og se om de eksisterer. Her kan du se et eksempel på boksen hvor jeg finder curl og python men ingen wget:
 
