@@ -173,7 +173,7 @@ Vil vi istedet uploade en fuld reverse shell.
 
 Jeg valgte at bruge [pentestmonkey's php reverse shell](https://github.com/pentestmonkey/php-reverse-shell/blob/master/php-reverse-shell.php) da jeg har erfaring med denne. Men en hvilket som helst burde virke.
 
-Efter at have downloaded pentestmonkeys php reverse shell script, modificerede variablerne ip og port til at inkludere min haaukins IP og bruge port 13337
+Efter at have downloaded pentestmonkeys php reverse shell script, modificerede jeg variablerne $ip og $port til at inkludere min haaukins IP og bruge port 13337
 
 Derefter modificerede jeg exploit scriptet fra exploitdb som følgende:
 
