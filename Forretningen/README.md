@@ -281,7 +281,7 @@ For denne challenge virker dette, men det er ikke altid dette vil. Nogen gange s
 
 Hvis dette sker, kan vi istedet kigge på at downloade en stage 2 og køre den:
 
-## Step 2.2 Reverse shell med download
+### Step 2.2 Reverse shell med download
 
 Lad os tage den originale payload og omskrive den til et python script istedet:
 ```bash
