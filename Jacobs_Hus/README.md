@@ -2,8 +2,11 @@
 
 ## Challenge information
 Navn: Jacobs Hus
+
 Forslået Sværhedsgrad: Meget Let
+
 Haaukins API: Ja
+
 Beskrivelse: det det det det, det det det det det jacobs hus: http://jacobshus.hkn
 
 ## Write-up
