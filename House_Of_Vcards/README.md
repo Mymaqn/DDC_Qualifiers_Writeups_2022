@@ -21,7 +21,7 @@ Vi kan tilgå http://contacts-vault.hkn og finder forsiden til hvad ligner en ko
 
 ![Forside](Forside.png)
 
-Ved at trykke på knappen ```Join Contact``` kan vil lave en ny bruger.
+Ved at trykke på knappen ```Join Contact Vault``` kan vil lave en ny bruger.
 
 Vi er derefter mødt med denne side:
 
