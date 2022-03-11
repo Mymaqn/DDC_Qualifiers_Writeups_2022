@@ -76,7 +76,7 @@ I dette tilfælde ved vi ikke hvad nøglen er og for at dekryptere teksten er vi
 
 Siden der kun er 28 mulige kombinationer, kan dette brute forces.
 
-Jeg valgte at brute force, vha. at modificere det originale script og tjekke efter strengen "ddc". 
+Jeg valgte at brute force, vha. at modificere det originale script og tjekke efter strengen "ddc". Scriptet som gør dette, tjekker hver af de 28 mulige nøgler.
 
 Modifikationer er som følgende:
 
