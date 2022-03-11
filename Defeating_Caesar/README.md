@@ -14,6 +14,8 @@ Husk at lægge resultatet ind i flagformatet:
 
 (ddc eksempel flag -> DDC{eksempel_flag})
 
+
+
 Filer der er med i download:
 
 encryption.txt:
