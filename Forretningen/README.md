@@ -160,7 +160,7 @@ Efter let eftersøgning fandt jeg følgende exploit til dette framework: https:/
 Kørsel af exploit giver en "shell" men denne shell er egentlig bare en kommando vi sender til en php fil der kører ```system(kommando)```.
 
 Eksempel på kørsel og at vi ikke kan lave f.eks. cd kan ses her:
-![first exploit run](explitstage1.png)
+![first exploit run](exploitstage1.png)
 
 Vi er derved nødt til at lave en rigtig reverse shell, for at vi kan lave privilege escalation og har fuld kontrol over systemet.
 
