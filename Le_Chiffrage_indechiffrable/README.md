@@ -138,9 +138,156 @@ Først deler vi teksten op i 6 grupper. En gruppe korresponderer til en karakter
 
 Så gruppe opdeling på vores eksempel cipher tekst fra tidligere ville så være:
 
-| gruppe |1|2|3|4|5|6|1|2|3|4|5|6|1|2|3|4|5|6|1|2|3|4|5|6|1|2|3|4|5|6|1|2|3|4|5|6|1|2|3|4|5|6|1|2|3|4|5|
-|-------|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|
-| karakter |o|e|l| |q|z|æ| |p|k|z|b| |e|t| |s|å|l| |q|q| |æ|l|g| |o|v| |n|l|c|n| |w|v|r| |r|e|r|ø|k|k|x|w|
+1 2 3 4 5 6 1 2 3 4 5 6
+o e l   q z æ   p k z b
 
+osv.
+
+Vi kan derefter køre letter frequency analysis på hver af grupperne til at finde ud af hvilken nøgle der er blevet til at kryptere med.
+
+Her er koden jeg brugte til at dele det hele op i grupper:
+
+```python
+    #Get groups:
+    groups = []
+
+    for i in range(0,6):
+        groups.append("")
+
+    for i in range(len(text)):
+        groupidx = i%6
+        groups[groupidx]+=text[i]
+```
+
+Derefter kan vi tælle hvor mange af hvert bogstav der er. Jeg valgte at gøre dette vha. en funktion som returnerer et dictionary med bogstavet som nøgle og hvor ofte det forekommer som værdien:
+```python
+def getLetterFrequency(text):
+    returndict = {}
+
+    for item in text:
+        if item == ' ':
+            continue
+        if item in returndict.keys():
+            returndict[item]+=1
+        else:
+            returndict[item] = 0
+
+    return returndict
+```
+
+Derefter skrev jeg en funktion der fandt det bogstav der forekommer mest i gruppen:
+
+```python
+def getHighestFrequency(frequencyDict):
+    
+    highestfreqvalue = 0
+    highestfreqletter = ''
+    for item in frequencyDict.keys():
+        if highestfreqvalue < frequencyDict[item]:
+            highestfreqvalue = frequencyDict[item]
+            highestfreqletter = item
+    return highestfreqletter
+```
+
+Det bogstav der forekommer mest i det danske sprog med ~16% er e. Så vi bruger denne til at udregne nøglen ved at trække "e" fra. Derefter kan vi dekryptere teksten.
+
+Fuld kode:
+```python
+import string
+import threading
+import time
+alphabet = 'abcdefghijklmnopqrstuvwxyzæøå'
+
+# makes input lowercase, and removes all characters other than alphabet and spaces.
+def clean_input(text):
+    text = text.lower()
+    tmp = [c if c in (alphabet + string.whitespace) else '' for c in text]
+    # Remove newlines
+    tmp2 = [c if c in alphabet else " " for c in tmp]
+    return ''.join(tmp2)
+
+def sub(txt, key):
+    # ignore spaces and newlines
+    if txt in string.whitespace:
+        return txt
+    # rotate character by the key character's index in the alphabet
+    return alphabet[(alphabet.index(txt) - alphabet.index(key)) % len(alphabet)]
+
+
+def vignere_decrypt(key, text):
+    ciphertext = ""
+    for i in range(len(text)):
+        ciphertext += sub(text[i], key[i%len(key)])
+    return ciphertext
+
+def getLetterFrequency(text):
+    returndict = {}
+
+    for item in text:
+        if item == ' ':
+            continue
+        if item in returndict.keys():
+            returndict[item]+=1
+        else:
+            returndict[item] = 0
+
+    return returndict
+
+def getHighestFrequency(frequencyDict):
+    
+    highestfreqvalue = 0
+    highestfreqletter = ''
+    for item in frequencyDict.keys():
+        if highestfreqvalue < frequencyDict[item]:
+            highestfreqvalue = frequencyDict[item]
+            highestfreqletter = item
+    return highestfreqletter
+
+text = ""
+
+def main():
+    # Danish text, flag is in text
+    with open('encryption.txt', 'rb') as f:
+        text = f.read().decode("utf-8")
+    text = clean_input(text)
+
+    
+    #Get groups:
+    groups = []
+
+    for i in range(0,6):
+        groups.append("")
+
+    for i in range(len(text)):
+        groupidx = i%6
+
+        groups[groupidx]+=text[i]
+    mostcommonletter = "e"
+    key = ""
+    for i in range(0,6):
+        freqdict = getLetterFrequency(groups[i])
+        highestfreq = getHighestFrequency(freqdict)
+
+        key += alphabet[(alphabet.index(highestfreq) - alphabet.index("e")) % len(alphabet)]
+    
+    print(f"KEY:\n{key}")
+    print()
+    print(f"PLAINTEXT:\n{vignere_decrypt(key,text)}")
+```
+
+
+Dette giver følgende output:
+```
+KEY:
+klmraå
+
+PLAINTEXT:
+velkommen til ddc  flaget kommer lige om lidt husk at tilføje tuborgklammer rundt om flaget lige som alle andre flag og udskift mellemrumene med underscores    flaget er     ddc frekvens analyse på dansk text        følgende tekst er fra da wikipedia org wiki flag    et flag er et signalgivende stykke klæde der hænger fra en flagstang enten på jorden eller fra en bygning små flag båret i hånden i en kort stav fx til semaforsignalering eller inden for idræt kaldes også flag hvorimod et større håndbåret flag kaldes en fane en mindre fane der bæres til hest eller et flag monteret på et køretøj for at identificere indehaveren kaldes en standart    en flagstang kan for ikke at stå tom når der ikke flages forsynes med et langt båndformet flag kaldet en vimpel    i marinen anvendes også personlige flag for at markere at fx en befalingsmand eller et statsoverhoved er om bord et sådant vimpellignende men kortere flag forsynet med mærke og split kaldes en stander    nogle lande anvender til søs et særligt flag der hejses i stævnen når skibet ligger ved kaj et sådant flag kaldes en gøs    et flag for en stat indeholder ofte farverne fra statens våbenskjold gerne ordnet i vandrette striber siden den franske revolution anvendes dog også lodrette striber andre flag fx europæiske korsflag er dog ikke afledt af et våbenskjolds farver    en gengivelse af et våbenmærke på et flag hvor ikke blot farverne men også motivet gengives således at flaget simpelt hen er våbenskjoldet på flagdug kaldes et banner    studiet af flag kaldes vexillologi
+```
+
+Så vores flag er:
+```
+DDC{frekvens_analyse_på_dansk_text}
+```
 
 
