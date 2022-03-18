@@ -139,7 +139,7 @@ Først deler vi teksten op i 6 grupper. En gruppe korresponderer til en karakter
 Så gruppe opdeling på vores eksempel cipher tekst fra tidligere ville så være:
 
 | gruppe |1|2|3|4|5|6|1|2|3|4|5|6|1|2|3|4|5|6|1|2|3|4|5|6|1|2|3|4|5|6|1|2|3|4|5|6|1|2|3|4|5|6|1|2|3|4|5|
---------------------------------------------------------------------------------------------------------
+|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|
 | karakter |o|e|l| |q|z|æ| |p|k|z|b| |e|t| |s|å|l| |q|q| |æ|l|g| |o|v| |n|l|c|n| |w|v|r| |r|e|r|ø|k|k|x|w|
 
 
