@@ -138,10 +138,10 @@ Først deler vi teksten op i 6 grupper. En gruppe korresponderer til en karakter
 
 Så gruppe opdeling på vores eksempel cipher tekst fra tidligere ville så være:
 
+```
 1 2 3 4 5 6 1 2 3 4 5 6
-
 o e l   q z æ   p k z b
-
+```
 osv.
 
 Vi kan derefter køre letter frequency analysis på hver af grupperne til at finde ud af hvilken nøgle der er blevet til at kryptere med.
