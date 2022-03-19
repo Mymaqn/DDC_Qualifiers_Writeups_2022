@@ -81,14 +81,14 @@ Seedet er en streng mellem 0000 og 9999 og bliver brugt til at generere variable
 
 I dette tilfælde, siden vi nemt kan brute force tallene mellem 0000 og 9999, kan vi antage vi kender variablerne a, b og c i krypteringsfunktionen, da vi kan rekrerere disse vha. at fodre det samme seed til random igen.
 
-I slutningen af loopet laver programmet så en: 
+I slutningen af krypteringsloopet laver programmet så en: 
 
 ```python
 pow((a*encryption + b)%p,c,p)
 ```
+For at dekryptere vil vi være nødt til at finde matematiske operationer vi kan foretage, for at få originalteksten tilbage.
 
-
-Lad os kigge på hvordan vi kan simplificere dette:
+For at gøre dette nemmere, at forstå og få hovedet omkring, har jeg valgt at simplificere dette:
 
 Lad os starte med at kigge på (a*encryption+b)%p som en stor variabel.
 
