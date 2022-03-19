@@ -144,7 +144,7 @@ o e l   q z æ   p k z b
 ```
 osv.
 
-Vi kan derefter køre letter frequency analysis på hver af grupperne til at finde ud af hvilken nøgle der er blevet til at kryptere med.
+Vi kan derefter køre letter frequency analysis på hver af grupperne for at finde ud af hvilken nøgle der er blevet brugt til at kryptere med.
 
 Her er koden jeg brugte til at dele det hele op i grupper:
 
