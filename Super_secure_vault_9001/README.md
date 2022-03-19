@@ -1,4 +1,4 @@
-# Meta Writeup
+# Super Secure Vault 9001 Writeup
 
 ## Challenge information
 
