@@ -17,7 +17,7 @@ OBS: Udfordringerne Rona aka .. og The Artist kan løses på samme API instans
 
 Efter at have oprettet en konto på http://friendspace.hkn kan vi scrolle i vores feed.
 
-Vi vil derved se at en "Jens RealJens" har lagt et billede op af deres hjemmearbejdsplads. Med en postit note på siden af den
+Vi vil derved se at en "Jens RealJens" har lagt et billede op af deres hjemmearbejdsplads. Med en postit note på siden af hans laptop
 
 ![leak](leak.png)
 
