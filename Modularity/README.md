@@ -77,7 +77,7 @@ I denne challenge skal vi dekryptere cipherteksten i output.txt, for at få flag
 
 For at kryptere vores input gør programmet brug af et seed som fodres til random.
 
-Seedet er en streng mellem 0000 og 9999 og bliver brugt til at generere variabler til dekryptering af inputtet.
+Seedet er en streng mellem 0000 og 9999 og bliver brugt til at generere variabler til kryptering af inputtet.
 
 I dette tilfælde, siden vi nemt kan brute force tallene mellem 0000 og 9999, kan vi antage vi kender variablerne a, b og c i krypteringsfunktionen, da vi kan rekrerere disse vha. at fodre det samme seed til random igen.
 
