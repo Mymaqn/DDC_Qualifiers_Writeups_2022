@@ -2,7 +2,7 @@
 
 ## Challenge information
 
-Forslået sværhedsgrad: Meget Let
+Forslået sværhedsgrad: Let
 
 Haaukins API: Nej
 
