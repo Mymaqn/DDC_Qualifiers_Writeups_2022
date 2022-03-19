@@ -108,7 +108,7 @@ d = c^-1 % phi(p)
 
 phi(p) er euler's totient funktion og er i dette tilfælde p-1, da p er et primtal.
 
-Siden vi antager vi kender c, vi kender p, har vi derved fundet en dekrypteringsnøgle til at komme tilbage til m:
+Siden vi antager vi kender c og vi kender p, har vi derved fundet en dekrypteringsnøgle til at komme tilbage til m:
 
 ```python
 d = pow(c,-1,phi)
