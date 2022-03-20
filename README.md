@@ -1,4 +1,4 @@
-﻿# DDC_Qualifiers_Writeups_2022
+﻿# DDC Qualifiers Writeups 2022
 
 ## Indholdsfortegnelse
 
