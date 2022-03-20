@@ -129,9 +129,20 @@ Derefter kan vi gange vores a*encryption % p med dette og vi får encryption til
 
 ((a*encryption) % p) * da %p = encryption 
 
-Vi kan nu komme tilbage til den originale værdi!
+Vi kan nu komme tilbage til den originale værdi!a
 
-Her er dette koncept skrevet om til kode, som også håndterer brute forcing af seeds:
+Her er dette skrevet om til kode, hvor encryption er hedder "decryption" istedet:
+```python
+d1 = pow(c,-1,phi) #Mod inverse for getting back m
+        
+st = pow(decryption,d1,p) #Getting back m
+        
+st = (st-b) % p #Substracting b from m to get a*encryption % p
+modinva = pow(a,-1,p) #Modular inverse of a
+decryption = (st*modinva)%p # get back encryption
+```
+
+Derefter skal vi bare generere alle a,b og c værdier for det specifikke random seed, og brute force igennem værdierne fra 0-9999:
 
 ```python
 import random
