@@ -31,7 +31,7 @@
 [Super Secure Vault 9001](Super_secure_vault_9001)
 
 ### Reverse Engineering
-[Password Checker](Passowrd_checker)
+[Password Checker](Password_checker)
 
 ### Binary Exploitation
 [Intmonster](Intmonster)
