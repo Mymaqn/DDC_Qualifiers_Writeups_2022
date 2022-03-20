@@ -1,4 +1,4 @@
-# Password Checker Writeup
+# Intmonster Writeup
 
 ## Challenge information
 
